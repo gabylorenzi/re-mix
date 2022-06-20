@@ -39,6 +39,7 @@ def get_last_weeks_listens(artist_id = string) -> int:
     """
     Returns an integer equivalent to the number of listens by a given artist, taking the artist ID as input
     """
+    return None
 
 def get_last_weeks_artists():
     return None
@@ -77,6 +78,7 @@ def get_similar_song(song_id: string) -> string:
     """
 
     audio_features = get_audio_features(song_id)
+    return None
 
 def get_audio_features(song_id: string) -> dict:
     """
