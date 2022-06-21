@@ -3,7 +3,7 @@ import random
 import string
 
 from matplotlib import artist
-from app import BASE_URL, access_token, headers
+#from app import BASE_URL, access_token, headers
 import requests
 
 import spotipy
@@ -19,7 +19,6 @@ def get_curr_users_top_tracks(sp, time_range="short_term"):
     """
     Returns list of spotify URIs in string format representing the current user's top tracks"""
     results = sp.current_user_top_tracks(limit=50, offset=0, time_range=time_range)
-    print(results['items'])
 
     curr_usr_top_tracks = []
     for idx, item in enumerate(results['items']):

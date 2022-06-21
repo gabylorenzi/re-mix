@@ -25,8 +25,8 @@ headers_old = {
 
 headers = {'Authorization': 'Bearer BQC1irlDYxzgKVau5u0wtPBuHUM1eHs-etTz09KNNbzRGENY-jyTXQJ_L0c-CtVxgnxtiZ-j4UQatHelferqs12XsQnFrjLWRWW-Cu4tgJwetE3TTWeHpV7TJ9TAN9Hx5FeWoSAbNMt9gchUuBLR_5dhvZ-Cidi9bzyCujvOslKjmneH_M7IE0zqeBNAeYf8pv9lmSizynUYCy8ZMHD9H3paLxgPQy4EKTez1qMxhrQifg'}
 
-print("old", headers_old)
-print("new", headers)
+#print("old", headers_old)
+#print("new", headers)
 
 BASE_URL = 'https://api.spotify.com/v1/'
 
