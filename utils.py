@@ -22,12 +22,13 @@ def get_curr_users_top_tracks(sp, time_range="short_term"):
 
     curr_usr_top_tracks = []
     for idx, item in enumerate(results['items']):
-        track = item['uri'].encode()[14:]
+        track = item['uri'][14:]
         curr_usr_top_tracks.append(track)
-
     return curr_usr_top_tracks
 
+
 def get_curr_users_top_artists(sp, time_range='short_term'):
+    "Returns 30 of the users top artists in a given time range"
     return sp.current_user_top_artists(limit = 30, time_range = time_range)
 
 
@@ -36,9 +37,9 @@ def get_last_weeks_artists():
     Returns a list of strings, each being an artist ID that have had more than a threshold of listens for the last week. 
     The threshold [how_many_listens] can indicate how popular an artist is for the user.
     """
-
-    r = requests.get(BASE_URL + 'me/top/tracks', headers=headers)
-    print(r)
+    #these variables come from import app.py
+    #r = requests.get(BASE_URL + 'me/top/tracks', headers=headers)
+    #print(r)
 
 def get_last_weeks_listens(artist_id = string) -> int:
     """
@@ -73,7 +74,7 @@ def get_top_genre():
 
 def get_similar_song(sp, song_ids: list) -> string:
     """
-    Given a song_id, find 3 songs with similar audio features. 
+    Given a random set of top songs, get recommendations.
 
     Parameters:
         song_id: spotify song id for which audio features will be compared
@@ -90,16 +91,19 @@ def get_audio_features(sp, song_ids: list) -> dict:
 
     return sp.audio_features(song_ids)
 
-def get_spotify_recs(sp, base_list = list) -> list:
+def get_similar_songs(sp, base_list = list) -> list:
     """
     Given a song URI, artists, or genre, return the recommendations. Can pass in multiple songs.
     Returns a list of URIs.
     https://spotipy.readthedocs.io/en/2.9.0/#spotipy.client.Spotify.recommendations
     """
-    if len(base_list > 5):
+    if len(base_list) > 5:
         raise ValueError('list must be 5 items or less')
-    return sp.recommendations(base_list, limit = 10)
-
+    raw_recs = sp.recommendations(seed_tracks = base_list, limit = 10)
+    recommendations = []
+    for item in raw_recs['tracks']:
+        recommendations.append(item['id'])
+    return recommendations
 
 
 def main():
